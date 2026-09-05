@@ -2,6 +2,7 @@ import { Button } from "@/components/button/Button";
 import { TextField } from "@/components/text-field/TextField";
 import { useOnboardingForm } from "@/hooks/useOnboardingForm";
 import { ONBOARDING_COMPLETED } from "@/utils/constants";
+import { ErrorMessage } from "../error-message/ErrorMessage";
 
 export function OnboardingForm() {
   const {
@@ -47,12 +48,12 @@ export function OnboardingForm() {
           inputMode="tel"
           placeholder="2084546666"
           maxLength={10}
-          errorMessage={errors.phone?.message || errors.root?.message}
+          errorMessage={errors.phone?.message}
           {...register("phone")}
         />
         <TextField
           label="Corporation Number"
-          type="type"
+          type="text"
           inputMode="numeric"
           maxLength={9}
           errorMessage={errors.corporationNumber?.message}
@@ -65,6 +66,8 @@ export function OnboardingForm() {
             {ONBOARDING_COMPLETED}
           </p>
         )}
+
+        {!!errors.root && <ErrorMessage message={errors.root.message || ""} />}
 
         <Button
           type="submit"
