@@ -11,7 +11,7 @@ A single-page onboarding form capturing a user's personal and business details, 
 Requires Node 20+.
 
 ```bash
-git clone <repo-url>
+clone repo
 cd Onboarding-Form
 npm install
 cp .env.sample .env
