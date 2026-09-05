@@ -17,7 +17,7 @@ export function useOnboardingForm() {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors, isSubmitting, isSubmitSuccessful },
     setError,
     reset,
     getFieldState,
@@ -29,7 +29,7 @@ export function useOnboardingForm() {
     defaultValues: DEFAULT_FORM,
   });
 
-  const { verify } = useCorporationNumberCheck();
+  const { isVerifying, verify } = useCorporationNumberCheck();
   const corporationNumberRegistery = register("corporationNumber");
 
   function setInvalidCorporationError(message?: string) {
@@ -91,7 +91,8 @@ export function useOnboardingForm() {
     corporationNumberRegistery,
     errors,
     isSubmitting,
-
+    isSubmitSuccessful,
+    isVerifying,
     onCorporationNumberBlur,
     register,
     submitFormData,

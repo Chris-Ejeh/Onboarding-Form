@@ -1,12 +1,15 @@
 import { Button } from "@/components/button/Button";
 import { TextField } from "@/components/text-field/TextField";
 import { useOnboardingForm } from "@/hooks/useOnboardingForm";
+import { ONBOARDING_COMPLETED } from "@/utils/constants";
 
 export function OnboardingForm() {
   const {
     corporationNumberRegistery,
     errors,
     isSubmitting,
+    isSubmitSuccessful,
+    isVerifying,
     onCorporationNumberBlur,
     register,
     submitFormData,
@@ -44,7 +47,7 @@ export function OnboardingForm() {
           inputMode="tel"
           placeholder="2084546666"
           maxLength={10}
-          errorMessage={errors.phone?.message}
+          errorMessage={errors.phone?.message || errors.root?.message}
           {...register("phone")}
         />
         <TextField
@@ -57,7 +60,17 @@ export function OnboardingForm() {
           onBlur={onCorporationNumberBlur}
         />
 
-        <Button type="submit">
+        {isSubmitSuccessful && (
+          <p role="status" className="text-sm text-green-700">
+            {ONBOARDING_COMPLETED}
+          </p>
+        )}
+
+        <Button
+          type="submit"
+          role="button"
+          disabled={isVerifying || isSubmitting}
+        >
           {isSubmitting ? "Submitting..." : "Submit"}
         </Button>
       </form>

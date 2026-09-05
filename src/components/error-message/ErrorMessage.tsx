@@ -1,8 +1,8 @@
-import type { ErrorMessage } from "./type";
+import type { ErrorMessageProps } from "./type";
 
-export function ErrorMessage({ message }: ErrorMessage) {
+export function ErrorMessage({ message, id }: ErrorMessageProps) {
   return (
-    <p className="text-red-500 font-medium text-[10px]" role="alert">
+    <p className="text-red-500 font-medium text-[10px]" id={id} role="alert">
       {message}
     </p>
   );
