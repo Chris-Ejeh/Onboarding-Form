@@ -1,7 +1,5 @@
-import type { ComponentPropsWithoutRef } from "react";
 import { twMerge } from "tailwind-merge";
-
-type ButtonProps = ComponentPropsWithoutRef<"button">;
+import type { ButtonProps } from "./types";
 
 export function Button({ children, className, ...props }: ButtonProps) {
   return (
